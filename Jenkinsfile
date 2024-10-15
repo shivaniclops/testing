@@ -13,7 +13,7 @@ pipeline {
                 echo "The Database IP is: ${DB_HOST}"
             }
         }
-    }
+    
         stage('Test') {
             steps {
                 echo "The Database username is: ${USERNAME} and the password is: ${PASSWORD}"
