@@ -2,20 +2,20 @@ pipeline {
     agent any
 
     stages {
-        stage('Setup') {
-            steps {
-                withCredentials([usernamePassword(credentialsId: 'ec2-user', usernameVariable: 'myuser', passwordVariable: 'mypassword')]) {
-                    sh '''
-                    echo ${myuser}
-                    echo ${mypassword}
-                    '''
+        stage('lint and format') {
+            stages{
+                stage('linting'){
+                    steps{
+                        echo "listing code in nested stage"
+                    }
                 }
             }
-        }
-        
-        stage('Test') {
-            steps {
-                echo "This is test stage"
+            stages{
+                stage('formatting'){
+                    steps{
+                        echo "formatting code in nested stage"
+                    }
+                }
             }
         }
     }
