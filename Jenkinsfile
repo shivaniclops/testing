@@ -1,21 +1,23 @@
 pipeline {
     agent any
-    
+
+    environment {
+        SERVER_CREDS = credentials('ec2-user')
+    }
+
     stages {
         stage('Setup') {
-        environment {
-            DB_HOST  = '192.168.12.2'
-            USERNAME = 'Admin'
-            PASSWORD = 'Admin@123'
-        }
             steps {
-                echo "The Database IP is: ${DB_HOST}"
+                echo "My creds: ${SERVER_CREDS}"
+                echo "Username: ${SERVER_CREDS_USR}"
+                echo "Username: ${SERVER_CREDS_PSW}"
             }
         }
     
         stage('Test') {
             steps {
-                echo "Commit: ${env.GIT_COMMIT}"
+                // echo "The Database username is: ${USERNAME} and the password is: ${PASSWORD}"
+                echo "this is test stage"
             }
         }
     }
