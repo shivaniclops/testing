@@ -1,16 +1,15 @@
 pipeline {
     agent any
 
-    environment {
-        SERVER_CREDS = credentials('ec2-user')
-    }
-
     stages {
         stage('Setup') {
             steps {
-                echo "My creds: ${SERVER_CREDS}"
-                echo "Username: ${SERVER_CREDS_USR}"
-                echo "Username: ${SERVER_CREDS_PSW}"
+                withCredentials([usernamePassword(credentialsId: 'ec2-user', usernameVariable: 'myuser', passwordVariable: 'mypassword')])
+                
+                sh '''
+                echo ${myuser}
+                echo ${mypassword}
+                '''
             }
         }
     
