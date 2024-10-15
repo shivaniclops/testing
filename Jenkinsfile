@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Setup') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'ec2-user', usernameVariable: 'myuser', passwordVariable: 'mypassword')])
+                withCredentials([usernamePassword(credentialsId: 'ec2-user', usernameVariable: 'myuser', passwordVariable: 'mypassword')]) {
                 
                 sh '''
                 echo ${myuser}
@@ -20,4 +20,5 @@ pipeline {
             }
         }
     }
+}
 }
