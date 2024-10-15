@@ -3,7 +3,7 @@ pipeline {
 
     stages {
         stage('lint and format') {
-            stages {
+            parallel {
                 stage('linting') {
                     steps {
                         echo "linting code in nested stage"
