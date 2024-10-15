@@ -15,7 +15,7 @@ pipeline {
     
         stage('Test') {
             steps {
-                echo "Commit: ${env.GIT_COMMIT}
+                echo "Commit: ${env.GIT_COMMIT}"
             }
         }
     }
