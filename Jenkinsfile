@@ -1,19 +1,24 @@
 pipeline {
     agent any
+    parameters {
+        string(name: 'ENVIRONMENT', defaultValue: 'dev', description: 'Specify the environment for deployment')
+        booleanParam(name: 'RUN_TESTS', defaultValue: true, description: 'Run Tests in pipeline')
+    }
 
     stages {
-        stage('lint and format') {
-            parallel {
-                stage('linting') {
-                    steps {
-                        sh "sleep 30"
-                    }
+        stage('test') {
+            when {
+                expression {
+                    params.RUN_TESTS == true
                 }
-                stage('formatting') {
-                    steps {
-                        sh "sleep 30"
-                    }
-                }
+            }
+            steps {
+                echo "testing application"
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo "deploying to ${params.ENVIRONMENT} environment"
             }
         }
     }
