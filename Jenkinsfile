@@ -1,24 +1,21 @@
 pipeline {
     agent any
-    parameters {
-        string(name: 'ENVIRONMENT', defaultValue: 'dev', description: 'Specify the environment for deployment')
-        booleanParam(name: 'RUN_TESTS', defaultValue: true, description: 'Run Tests in pipeline')
-    }
 
     stages {
-        stage('test') {
-            when {
-                expression {
-                    params.RUN_TESTS == true
-                }
-            }
+        stage('Setup') {
+        environment {
+            DB_HOST  = '192.168.12.2'
+            USERNAME = 'Admin'
+            PASSWORD = 'Admin@123'
+        }
             steps {
-                echo "testing application"
+                echo "The Database IP is: ${DB_HOST}"
             }
         }
-        stage('Deploy') {
+    
+        stage('Test') {
             steps {
-                echo "deploying to ${params.ENVIRONMENT} environment"
+                echo "The Database username is: ${USERNAME} and the password is: ${PASSWORD}"
             }
         }
     }
