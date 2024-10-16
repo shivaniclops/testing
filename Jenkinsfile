@@ -5,6 +5,7 @@ pipeline {
         stage('Setup') {
         environment {
             DB_HOST  = '192.168.12.2'
+            
             USERNAME = 'Admin'
             PASSWORD = 'Admin@123'
         }
